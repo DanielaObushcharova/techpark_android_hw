@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">android_homework</string>
+    <string name="addNumber">Добавить новое число</string>
+    <string name="number">1</string>
+</resources>
