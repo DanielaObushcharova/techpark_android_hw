@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
 
-    private ArrayList<Integer> numData;
-    private Activity activity;
+    private final ArrayList<Integer> numData;
+    private final Activity activity;
     private LayoutInflater layoutInflater;
 
-    public NumAdapter(ArrayList data, Activity activ) {
+    public NumAdapter(ArrayList<Integer> data, Activity activ) {
         numData = data;
         activity = activ;
     }
@@ -52,8 +52,8 @@ public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
         return numData.size();
     }
 
-    public class NumViewHolder extends RecyclerView.ViewHolder {
-        TextView mNum;
+    public static class NumViewHolder extends RecyclerView.ViewHolder {
+        final TextView mNum;
         public NumViewHolder(@NonNull View itemView) {
             super(itemView);
             mNum = itemView.findViewById(R.id.number);
