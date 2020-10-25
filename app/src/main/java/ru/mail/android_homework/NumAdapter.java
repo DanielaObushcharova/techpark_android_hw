@@ -1,6 +1,6 @@
 package ru.mail.android_homework;
 
-import android.os.Bundle;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -16,12 +15,12 @@ import java.util.ArrayList;
 public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
 
     private ArrayList<Integer> numData;
+    private Activity activity;
     private LayoutInflater layoutInflater;
-    private FragmentManager fm;
 
-    public NumAdapter(ArrayList data, FragmentManager fragManager) {
+    public NumAdapter(ArrayList data, Activity activ) {
         numData = data;
-        fm = fragManager;
+        activity = activ;
     }
 
     @NonNull
@@ -41,14 +40,9 @@ public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
         holder.mNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SingleNumberFragment fragment = new SingleNumberFragment();
-                Bundle bundle = new Bundle();
-                bundle.putInt("textVal", position + 1);
-                fragment.setArguments(bundle);
-                fm.beginTransaction()
-                        .replace(R.id.container, fragment)
-                        .addToBackStack(null)
-                        .commit();
+                if (activity instanceof MainActivity) {
+                    ((MainActivity) activity).numberClickListener(position + 1);
+                }
             }
         });
     }

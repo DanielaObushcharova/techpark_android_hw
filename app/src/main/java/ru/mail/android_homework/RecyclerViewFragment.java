@@ -9,7 +9,6 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -53,8 +52,7 @@ public class RecyclerViewFragment extends Fragment {
         int columns = getResources().getInteger(R.integer.column_number);
         layoutManager = new GridLayoutManager(getActivity(), columns);
         recyclerView.setLayoutManager(layoutManager);
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        adapter = new NumAdapter(nums, fm);
+        adapter = new NumAdapter(nums, getActivity());
         recyclerView.setAdapter(adapter);
 
         newNum = listItemsView.findViewById(R.id.addNumBtn);
@@ -72,7 +70,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     @Override
-    public void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(rememberSize, size);
     }
