@@ -1,7 +1,5 @@
 package ru.mail.android_homework;
 
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,10 +50,7 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         listItemsView = inflater.inflate(R.layout.first_fragment, container, false);
         recyclerView = listItemsView.findViewById(R.id.recycler);
-        int orientation = getResources().getConfiguration().orientation;
-        int landColumns = getResources().getInteger(R.integer.landscapeCol);
-        int portColumns = getResources().getInteger(R.integer.portraitCol);
-        int columns = orientation == Configuration.ORIENTATION_LANDSCAPE? landColumns: portColumns;
+        int columns = getResources().getInteger(R.integer.column_number);
         layoutManager = new GridLayoutManager(getActivity(), columns);
         recyclerView.setLayoutManager(layoutManager);
         FragmentManager fm = getActivity().getSupportFragmentManager();
