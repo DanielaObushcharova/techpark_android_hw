@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.container, RecyclerViewFragment.newInstance())
-                    .addToBackStack(null)
                     .commit();
         }
     }
