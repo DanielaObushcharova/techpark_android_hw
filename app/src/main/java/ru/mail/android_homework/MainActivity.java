@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TEXT = "TEXT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     public void numberClickListener(int num) {
         SingleNumberFragment fragment = new SingleNumberFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("textVal", num);
+        bundle.putInt(TEXT, num);
         fragment.setArguments(bundle);
         getSupportFragmentManager()
                 .beginTransaction()

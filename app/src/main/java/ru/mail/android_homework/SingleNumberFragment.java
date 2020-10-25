@@ -13,7 +13,8 @@ import androidx.fragment.app.Fragment;
 
 public class SingleNumberFragment extends Fragment {
 
-    public TextView num;
+    private static final String TEXT = "TEXT";
+    private TextView num;
 
     @Nullable
     @Override
@@ -21,7 +22,7 @@ public class SingleNumberFragment extends Fragment {
         View view = inflater.inflate(R.layout.show_number_fragment, container, false);
         num = view.findViewById(R.id.showNum);
         Bundle bundle = getArguments();
-        int number = bundle.getInt("textVal");
+        int number = bundle.getInt(TEXT);
         num.setText(String.valueOf(number));
         int color = (number % 2 == 0? R.color.colorEven : R.color.colorOdd);
         num.setTextColor(ContextCompat.getColor(getContext(), color));
