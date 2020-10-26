@@ -16,7 +16,7 @@ public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
 
     private final ArrayList<Integer> numData;
     private final Activity activity;
-    private LayoutInflater layoutInflater;
+    private LayoutInflater mLayoutInflater;
 
     public NumAdapter(ArrayList<Integer> data, Activity activ) {
         numData = data;
@@ -26,8 +26,8 @@ public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
     @NonNull
     @Override
     public NumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        layoutInflater = layoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.number, parent, false);
+        mLayoutInflater = mLayoutInflater.from(parent.getContext());
+        View view = mLayoutInflater.inflate(R.layout.number, parent, false);
         return new NumViewHolder(view);
     }
 
@@ -36,7 +36,7 @@ public class NumAdapter extends RecyclerView.Adapter<NumAdapter.NumViewHolder> {
         int num = numData.get(position);
         int color = (position % 2 == 0? R.color.colorOdd : R.color.colorEven);
         holder.mNum.setText(String.valueOf(num));
-        holder.mNum.setTextColor(ContextCompat.getColor(layoutInflater.getContext(), color));
+        holder.mNum.setTextColor(ContextCompat.getColor(mLayoutInflater.getContext(), color));
         holder.mNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

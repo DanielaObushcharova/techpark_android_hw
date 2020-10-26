@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class RecyclerViewFragment extends Fragment {
 
-    private final static String rememberSize= "size";
-    private final static int initialSize = 100;
-    private int size = initialSize;
+    private final static String REMEMBER_SIZE= "size";
+    private final static int INITIAL_SIZE = 100;
+    private int mSize = INITIAL_SIZE;
 
-    private RecyclerView.Adapter adapter;
+    private NumAdapter mAdapter;
     private final ArrayList<Integer> nums = new ArrayList<>();
 
     public static RecyclerViewFragment newInstance() {
@@ -31,10 +31,10 @@ public class RecyclerViewFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
-            size = savedInstanceState.getInt(rememberSize);
+            mSize = savedInstanceState.getInt(REMEMBER_SIZE);
         }
 
-        for (int i = nums.size() + 1; i <= size; i++) {
+        for (int i = nums.size() + 1; i <= mSize; i++) {
             nums.add(i);
         }
     }
@@ -47,17 +47,17 @@ public class RecyclerViewFragment extends Fragment {
         int columns = getResources().getInteger(R.integer.column_number);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getActivity(), columns);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new NumAdapter(nums, getActivity());
-        recyclerView.setAdapter(adapter);
+        mAdapter = new NumAdapter(nums, getActivity());
+        recyclerView.setAdapter(mAdapter);
 
         Button newNum = listItemsView.findViewById(R.id.addNumBtn);
         newNum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                size++;
-                int nextNum = adapter.getItemCount() + 1;
+                mSize++;
+                int nextNum = mAdapter.getItemCount() + 1;
                 nums.add(nextNum);
-                adapter.notifyItemInserted(nextNum);
+                mAdapter.notifyItemInserted(nextNum);
             }
         });
 
@@ -67,6 +67,6 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt(rememberSize, size);
+        outState.putInt(REMEMBER_SIZE, mSize);
     }
 }

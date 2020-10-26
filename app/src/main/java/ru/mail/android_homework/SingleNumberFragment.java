@@ -14,13 +14,12 @@ import androidx.fragment.app.Fragment;
 public class SingleNumberFragment extends Fragment {
 
     private static final String TEXT = "TEXT";
-    private TextView num;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.show_number_fragment, container, false);
-        num = view.findViewById(R.id.showNum);
+        TextView num = view.findViewById(R.id.showNum);
         Bundle bundle = getArguments();
         int number = bundle.getInt(TEXT);
         num.setText(String.valueOf(number));
